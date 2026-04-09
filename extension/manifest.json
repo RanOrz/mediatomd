@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "MediaToMD",
+  "version": "0.1.0",
+  "description": "将网页和音视频内容转换为 Markdown",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "downloads",
+    "storage",
+    "alarms"
+  ],
+  "background": {
+    "service_worker": "service_worker.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["readability.js", "content_script.js"]
+    }
+  ],
+  "options_page": "settings.html"
+}

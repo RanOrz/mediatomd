@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>MediaToMD · 设置</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+      color: #1f2937;
+      background: #f9fafb;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 28px 32px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .card-header h1 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #4f46e5;
+    }
+
+    .form-group { margin-bottom: 20px; }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+    .hint {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 4px;
+    }
+
+    input {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      background: #fff;
+    }
+    input:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px #eef2ff;
+    }
+    input::placeholder { color: #9ca3af; }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .btn {
+      padding: 9px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.15s;
+      font-family: inherit;
+    }
+    .btn-primary { background: #4f46e5; color: #fff; }
+    .btn-primary:hover { background: #4338ca; }
+    .btn-secondary {
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #e5e7eb;
+    }
+    .btn-secondary:hover { background: #e5e7eb; }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    #status {
+      margin-top: 16px;
+      font-size: 13px;
+      min-height: 18px;
+      color: #6b7280;
+    }
+    #status.success { color: #059669; }
+    #status.error   { color: #dc2626; }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #e5e7eb;
+      margin: 24px 0;
+    }
+
+    .version {
+      font-size: 11px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="card-header">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+           stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06
+                 a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09
+                 A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83
+                 l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09
+                 A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83
+                 l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09
+                 a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83
+                 l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09
+                 a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+      <h1>设置</h1>
+    </div>
+
+    <div class="form-group">
+      <label for="backendUrl">后端地址</label>
+      <input type="url" id="backendUrl" placeholder="http://localhost:8000" />
+      <p class="hint">FastAPI 服务的地址，本地运行默认为 http://localhost:8000</p>
+    </div>
+
+    <div class="form-group">
+      <label for="apiKey">私钥</label>
+      <input type="password" id="apiKey" placeholder="your-private-key" autocomplete="off" />
+      <p class="hint">与后端 .env 中 API_KEY 保持一致</p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="actions">
+      <button class="btn btn-primary" id="saveBtn">保存</button>
+      <button class="btn btn-secondary" id="testBtn">测试连接</button>
+    </div>
+
+    <div id="status"></div>
+
+    <p class="version">MediaToMD v0.1.0</p>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>
